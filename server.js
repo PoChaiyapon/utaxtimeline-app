@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
 // global error handler
 app.use(errorHandler);
 
-const hostname = 'localhost';
+const hostname = '192.168.7.9';
 // start server
 const port = 4000;  //process.env.NODE_ENV === 'production' ? (process.env.PORT || 80) : 4000;
 app.listen(port,hostname, () => console.log(`Server:${hostname} listening on port ${port}`));

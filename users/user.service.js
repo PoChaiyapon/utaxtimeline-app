@@ -6,6 +6,7 @@ const db = require('_helpers/db');
 module.exports = {
     authenticate,
     getAll,
+    getAllbyFatory,
     getById,
     create,
     update,
@@ -25,7 +26,11 @@ async function authenticate({ username, password }) {
     return { ...omitHash(user.get()), token };
 }
 
-async function getAll(factory) {
+async function getAll() {
+    return await db.User.findAll();
+}
+
+async function getAllbyFatory(factory) {
     return await db.User.findAll({where: {factory: factory}});
 }
 

@@ -9,6 +9,7 @@ const userService = require('./user.service');
 router.post('/authenticate', authenticateSchema, authenticate);
 router.post('/register', registerSchema, register);
 router.get('/', authorize(), getAll);
+router.get('/factory/:name', authorize(), getAllbyFatory);
 // router.get('/', getAll);
 router.get('/current', authorize(), getCurrent);
 router.get('/:id', authorize(), getById);
@@ -52,7 +53,13 @@ function register(req, res, next) {
 }
 
 function getAll(req, res, next) {
-    userService.getAll(req.body.factory)
+    userService.getAll()
+        .then(users => res.json(users))
+        .catch(next);
+}
+
+function getAllbyFatory(req, res, next) {
+    userService.getAllbyFatory(req.params.name)
         .then(users => res.json(users))
         .catch(next);
 }
